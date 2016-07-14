@@ -1,0 +1,33 @@
+program intInput;
+
+#include("stdlib.hhf");
+
+var
+   i8:   int8;
+   i16:  int16;
+   i32:  int32;
+   
+begin intInput;
+
+    stdout.put("Wprowadz niewielka liczbe calkowita");
+	stdin.geti8();
+	mov(al,i8);
+	
+	stdout.put("Wprowadz wieksza liczbe calkowita");
+	stdin.geti16();
+	mov(ax,i16);
+	
+	stdout.put("Wprowadz liczbe calkowita ");
+	stdin.geti32();
+	mov(eax,i32);
+	
+	stdout.put
+	(
+	   nl,
+	   "Oto wprowadzone liczby:", nl, nl,
+	   "8-bitowa liczba calkowita: ", i8:12, nl,
+	   "16-bitowa liczba calkowita: ", i16:12, nl,
+	   "32-bitowa liczba calkowita: ", i32:12, nl
+	);
+	
+end intInput;

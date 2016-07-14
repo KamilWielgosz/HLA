@@ -1,0 +1,29 @@
+program testBadInput3;
+#include("stdlib.hhf");
+
+static
+   input: uns32;
+   
+begin testBadInput3;
+
+   forever
+   
+      try
+	    stdout.put("Podaj liczbe calkowita: ");
+		stdin.get(input);
+		stdout.put("Wprowadzono: ", input, nl);
+		break;
+	  
+	  exception(ex.ValueOutOfRange)
+	       stdout.put("Liczba jest zbyt duza; powtorz wprowadzanie.",nl);
+		   
+	  exception(ex.ConversionError)
+	       stdout.put("Ciag zawiera niedozwolone znaki; powtrzo wprowadzanie." nl);
+	  endtry;
+	endfor;
+	
+	stdout.put("Podaj jeszcze jedna liczbe: ");
+	stdin.get(input);
+	stdout.put("Nowa liczba to:", input, nl);
+	
+end testBadInput3;

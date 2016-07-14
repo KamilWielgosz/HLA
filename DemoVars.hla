@@ -1,0 +1,16 @@
+Program DemoVars;
+#include( "stdlib.hhf" )
+
+static
+   InitDemo: int32 := 5;
+   NotInitialized: int32;
+   
+begin DemoVars;
+
+    stdout.put( "Wartosc zmiennej InitDemo to ", InitDemo, nl );
+	
+	stdout.put( "Wprowadz liczbe calkowita: " );
+	stdin.get( NotInitialized );
+	stdout.put( "Wprowadzono: ", NotInitialized, nl );
+	
+end DemoVars;

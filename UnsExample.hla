@@ -1,0 +1,24 @@
+program UnsExample;
+#include("stdlib.hhf");
+
+static
+    UnsValue: uns16;
+	
+begin UnsExample;
+
+    stdout.put("Wprowadz liczbe calkowita z zakresu od 32 7668 do 65 535: ");
+	stdin.getu16();
+	mov(ax, UnsValue);
+	
+	stdout.put
+	(
+	   "Wprowadzono ",
+	   UnsValue,
+	   ". Gdyby interpertowac ja jako liczbe ze znakie,. mialaby wartosc "
+	);
+	
+	stdout.puti16(UnsValue);
+	stdout.newln();
+	
+end UnsExample;
+	

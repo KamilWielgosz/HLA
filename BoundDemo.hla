@@ -1,0 +1,89 @@
+program BoundDemo;
+#include("stdlib.hhf");
+static
+InputValue:int32;
+GoodInput:boolean;
+
+begin BoundDemo;
+
+    // Powtarzaj, dopoli uzytkownik wprowadza niepoprawne wartosci:
+	
+   repeat
+   
+      // zaloz, ze uzytkownik wprowadzil niepoprawna wartosc
+	  
+	  mov(false, GoodInput);
+	  
+	  //Przechwyc wyjatek bledu zakresu w bloku kodu chronionego.
+	  
+	  try
+	      stdout.put("Wprowadz liczbe calkotiwa z zakresu od 1 do 10: ");
+		  stdin.flushInput();
+		  stdin.geti32();
+		  
+		  stdout.put("Tutaj", nl);
+		  mov(eax, InputValue);
+		  
+		  //Zastosuj instrukcje bound celem sprawdzenia, czy
+		  // wprowadzona wartosc miesci sie z zakresie 1...10
+		  
+		  
+		  bound(eax, 1, 10);
+		  
+		  //Jesli wykonanie programu osiagnelo ten punkt, to
+		  // wprowadzono wartosc z zadanego zakresu. Ustaw zmienna logiczna
+		  // GoodInput na wartosc true, co spowoduje przerwanie tepli wprowadzania
+		  
+		  mov(true, GoodInput);
+		  
+		  // Wprowadzono wartosci niebedace liczbami calkowitymi
+		  
+		  exception(ex.ConversionError)
+		  
+		    stdout.put("Zly format liczby, wprowadz ponownie", nl);
+			
+		   //Wprowadzono wartosc spoza zakresu int 32
+		   
+		  exception(ex.ValueOutOfRange);
+		  
+		    stdout.put("Wprowadzono liczbe *o wiele* za duzam wprowadz ponownie", nl);
+			
+			//Wprowadzono wartosc spoza zadanego zakresu 1..10
+			//(wyjatek instrkcji bound)
+			
+		  exception(ex.BoundInstr)
+		     stdout.put
+			 (
+			   "Wprowadzono liczbe ",
+			   InputValue,
+			   "; oczekiwano iczby z zakresu od 1 do 10, wprowadz ponownie",
+			   nl
+			 );
+			 
+		  endtry;
+		  
+		until(GoodInput);
+		stdout.put("Wprowadzona liczba: ", InputValue, " jest poprawna.", nl);
+		
+end BoundDemo;
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  

@@ -1,0 +1,70 @@
+program INTOdemo;
+#include("stdlib.hhf");
+
+static
+   LOperand:int8;
+   ResultOp:int8;
+   
+begin INTOdemo;
+
+    // Ponizszy blok try..edntry ma wykrywac sytuacje wprowadzenia blednych danych
+	// i obslugiwac wyjatek przepelnienia:
+	
+	try
+	    // Pobierz z wejscia pierwszy z dwoch operandó:
+		
+		stdout.put("Wprowadz niewielka liczbe calkowita (-128...+127):");
+		stdin.geti8();
+		mov(al, LOperand);
+		
+		// Pobierz drugi operand:
+		
+		stdout.put("Wprowadz druga niewielka liczbe calkowita (-128..+127):");
+		stdin.geti8();
+		// Oblicz sume operandow i sprawdz, czy doszlo do przepelnienia:
+		
+		add(LOperand, al);
+		into();
+		
+		//WYswietl sume:
+		
+		stdout.put("Osmiobitowa suma wynosi ", (type int8 al), nl);
+		
+		//Obsluga niepoprawnych danych wejsciwych:
+		
+		
+	exception(ex.ConversionError)
+	
+	    stdout.put("Dane zawieraja niedozwolone znaki", nl);
+		
+		//Obsluga danych wykraczajacych poza zakres bajta:
+		
+	exception(ex.ValueOutOfRange)
+	
+	    stdout.put("Liczba miala miescic sie w zakresie -128...+127", nl);
+		
+		// Obsluga przepelnienia operacji arytmetycznej:
+		
+    exception(ex.IntoInstr)
+	
+	  stdout.put
+	  (
+	    "Suma wprowadzonych wartosci wykracza poza zakres -128..+127",
+		nl
+	   );
+	endtry;
+end INTOdemo;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

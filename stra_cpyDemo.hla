@@ -1,0 +1,64 @@
+//Program demonstrujacy przypisanie lancuchow z wykonaniem duplikatu procedura
+//str.a_cpy.
+
+program stra_cpyDemo;
+#include("stdlib.hhf");
+
+static
+    string1: string;
+	string2: string;
+	
+begin stra_cpyDemo;
+
+     // Pobierz wartosc do lancucha string1
+	 
+	 forever
+	     stdout.put("Wprowadz lancuch zawierajacy przynajmije trzy znaki: ");
+		 stdin.a_gets();
+		 mov(eax,string1);
+		 
+		 breakif((type str.strRec[eax]).length >= 3);
+		 
+		 stdout.put("Lancuch mial miec przynajmije trzy znaki." nl);
+		 
+	 endfor;
+	 
+	 //Wykonaj przypisanie lancuchow z powieleniem oparandu zrodlowego
+	 
+	 str.a_cpy(string1);
+	 mov(eax,string2);
+	 
+	 stdout.put("String1= '", string1, "'" nl);
+	 stdout.put("String2= '", string2, "'" nl);
+	 
+	 //Zmodyfukuj dane znakowe lancucha wskazanego zmienna string1,
+	 //nadpisujac trzy pierwsze znaki lancucha (zmienna lancuchowa
+	 //zawsze wskazuje na pierwszy znak lancucha, a wiadomo na pewno,
+	 //ze na wejscie wprowadzono lancuch o przynajmniej trzech znakach).
+	 
+	 mov(string1, ebx);
+	 
+	 mov('a', (type char [ebx]));
+	 mov('b', (type char [ebx+1]));
+	 mov('c', (type char [ebx+2]));
+	 
+	 //Pokaz, ze w wyniku przypisania procedura str.a_cpy powstaly dwa niezalezne lancuchy
+	 
+	 stdout.put
+	 (  
+	     "Po przypisaniu 'abc' do pierwszych trzech znakwo lancucha:"
+		 nl
+		 nl
+	 );
+	 
+	 stdout.put("String1= '", string1, "'" nl);
+	 stdout.put("String2= '", string2, "'" nl);
+	 
+	 //Tym razem trzeba zwolnic pamiec obu lancuchow
+	 // --- turaj nie ma juz aliasow lancuchow
+	 
+	 str.free(string1);
+	 str.free(string2);
+	 
+end stra_cpyDemo;
+	 

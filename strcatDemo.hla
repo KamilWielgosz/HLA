@@ -1,0 +1,42 @@
+//Program demonstrujacy zastosowanie procedur str.cat and str.a_cat
+
+program strcatDemo;
+#include("stdlib.hhf");
+
+static
+    UserName: string;
+	Hello:    string;
+	a_Hello:  string;
+	
+begin strcatDemo;
+    //Przydziel pamiec dla lancucha wynikowego konkatenacji:
+	
+	str.alloc(1024);
+	mov(eax,Hello);
+
+	//Pobierz od uzytkownika jakies lancuchy
+	
+	stdout.put("wprowadz swoje imie: ");
+	
+	stdin.flushInput();
+	stdin.a_gets();
+	mov(eax, UserName);
+	
+	//Zastosuj procedure str.cat celem scalenia dwoch lancuchow:
+	
+	str.cpy("Witaj, ", Hello);
+	str.cat(UserName, Hello);
+	
+	//Wykorzystaj w tym samym celu procedure str.a_cat
+	
+	str.a_cat("Witaj, ", UserName);
+	mov(eax, a_Hello);
+	
+	stdout.put("Lancuch wynikowy wywolania str.cat to '", Hello, "'" nl);
+	stdout.put("Lancuch wynikowy wywolania str.a_cat to '", a_Hello, "'" nl);
+	
+	str.free(UserName);
+	str.free(a_Hello);
+	str.free(Hello);
+	
+end strcatDemo;

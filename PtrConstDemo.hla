@@ -1,0 +1,17 @@
+program PtrConstDemo;
+#include("stdlib.hhf");
+
+static
+     b: byte := 0;
+	    byte    1,8,3,4,5,6,7;
+		
+const
+     pb:= &b + 2;
+	 
+begin PtrConstDemo;
+
+     mov(pb, ebx);
+	 mov([ebx],al);
+	 stdout.put("Wartosc spod adresu pb = $",al,nl);
+	 
+end PtrConstDemo;

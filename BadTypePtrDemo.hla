@@ -1,0 +1,44 @@
+//Program ilustruje problem braku
+//kontroli typow w odwolaniach realizowanych
+//za posrednictwem wskaznikow
+
+program BadTypePtrDemo;
+#include("stdlib.hhf");
+
+static
+    ptr:  pointer to char;
+	cnt:  uns32;
+	
+begin BadTypePtrDemo;
+
+    // Przydziel liczbe znakow wystarczajaca do przechowania
+	// wiersza tekstu wprowadzanego na wejscie.
+	
+	mem.alloc(256);
+	mov(eax,ptr);
+	
+	//Odczytaj znak po znaku wprowadzany tekst:
+	
+	stdout.put("Wprowadz wiersz tekstu: ");
+	stdin.flushInput();
+	mov(0,cnt);
+	mov(ptr,ebx);
+	repeat
+	    stdin.getc(); //wczytaj znak z wejscia
+		mov(al,[ebx]); //zapisz znak
+		inc(cnt);      // zwieksz licznik wczytanych znakow
+		inc(ebx);      // przesun skaznik do nastepnej pozycji w pamieci
+	until(stdin.eoln());
+	
+	    //Test wczytany. Pora na jego wyswietlanie:
+		
+	mov(ptr,ebx);
+	for(mov(cnt,ecx); ecx>0; dec(ecx)) do
+	 
+	    mov([ebx],eax);
+		stdout.put("Biezaca wartosc to $",eax,nl);
+		inc(ebx);
+	endfor;
+	mem.free(ptr);
+	
+end BadTypePtrDemo;

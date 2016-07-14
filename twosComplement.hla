@@ -1,0 +1,36 @@
+program twosComplement;
+#include("stdlib.hhf");
+
+static
+    PosValue: int8;
+	NegValue: int8;
+	
+begin twosComplement;
+
+    stdout.put("Podaj liczbe z zakresu 0 do 127: ");
+	stdin.get(PosValue);
+	
+	stdout.put(nl, "Szesnastkowo: $");
+	stdout.put(PosValue);
+	
+	mov(PosValue, al);
+	not(al);
+	stdout.put(nl, "Po inwersji bitow: $", al, nl);
+	add(1,al);
+	stdout.put("Po dodaniu jednosci: $", al, nl);
+	mov(al, NegValue);
+	stdout.put("Wynik (dziesietnie): ", NegValue, nl);
+	
+	stdout.put
+	(
+	    nl,
+		"Ta sama operacja z wykorzystaniem instrukcji neg: ",
+		nl
+	);
+	mov(PosValue, al);
+	neg(al);
+	mov(al, NegValue);
+	stdout.put("Wynik (szesnastkowo) = $", al, nl);
+	stdout.put("Wynik (dziesietnie) = ", NegValue, nl);
+	
+end twosComplement;

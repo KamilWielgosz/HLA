@@ -1,0 +1,24 @@
+//Program demonstrujacy zastosowanie procedur str.alloc oraz stdin.gets
+
+program strallocDemo;
+#include("stdlib.hhf");
+
+static
+   theString:string;
+   
+begin strallocDemo;
+
+     str.alloc(16);  //Przydziel pamiec dla lancucha i zachowaj wskaznik
+	 mov(eax, theString); //lancucha w miennej lancuchowej
+	 
+	  //Popros uzytkownika o wprowadzenie lancucha znakow:
+	  
+	 stdout.put("Wprowadz wiersz tekstu (maksymalnie 16 znakow): ");
+	 stdin.flushInput();
+	 stdin.gets(theString);
+	 
+	 //Wypisz wczytany lancuch:
+	 
+	 stdout.put("Wprowadzono lancuch: ", theString, nl);
+	 
+end strallocDemo;

@@ -1,0 +1,34 @@
+program charInput;
+
+#include("stdlib.hhf")
+
+var
+   counter: int32;
+   
+begin charInput;
+
+   repeat
+   
+   
+      mov(14,counter);
+	    while(counter>0) do
+		
+		   stdout.put(counter:3);
+		   sub(1,counter);
+		   
+		endwhile;
+		
+	stdout.put(nl, nl, "Wykonac kolejna iteracje(t/n)?:");
+	forever
+	 
+	    stdin.readLn();
+		stdin.getc();
+		breakif(al = 'n');
+		breakif(al = 't');
+        stdout.put("Prosze wprowadzic albo 't', albo 'n':");
+    endfor;
+    stdout.newln();
+
+   until( al = 'n');
+
+end charInput;   

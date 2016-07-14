@@ -1,0 +1,26 @@
+//Program demonstrujacy zastosowanie procedury stdin.a_gets
+
+program strfreeDemo2;
+#include("stdlib.hhf");
+
+static
+    theString:string;
+	
+begin strfreeDemo2;
+
+     // Popros uzytkownika o wprowadzenie lancucha znakow:
+	 
+	 stdout.put("Wprowadz wiersz tekstu: ");
+	 stdin.flushInput();
+	 stdin.a_gets();
+	 mov(eax,theString);
+	 
+	 //Wypisz wczytany lancuch;
+	 
+	 stdout.put("Wprowadzono lancuch: ", theString, nl);
+	 
+	 //Zwolnij pamiec przydzielona wywolaniem stdin.a_gets:
+	 
+	 str.free(theString);
+	 
+end strfreeDemo2;
